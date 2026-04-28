@@ -142,11 +142,13 @@
 .landing-container input[type='file']::-webkit-file-upload-button {
   margin-right: 12px;
   border: 1px solid var(--lp-border);
-  background: var(--lp-surface);
+  /* background: var(--lp-surface); */
   padding: 10px 12px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 650;
+  background: #e2e8f0; /* abu */
+  color: #0f172a;
 }
 
 .landing-container input[type='file']::-webkit-file-upload-button:hover {
