@@ -136,7 +136,7 @@
 
 .landing-container input[type='file'] {
   width: 100%;
-  color: var(--lp-muted);
+  color: #0f172a;
 }
 
 .landing-container input[type='file']::-webkit-file-upload-button {
