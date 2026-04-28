@@ -131,7 +131,7 @@
 .landing-container .upload-box p {
   margin: 0 0 10px;
   font-weight: 700;
-  color: var(--lp-text);
+  color: #0f172a;
 }
 
 .landing-container input[type='file'] {
