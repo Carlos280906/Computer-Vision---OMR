@@ -1,0 +1,224 @@
+/* LandingPage-only styles (scoped) */
+.landing-container {
+  --lp-primary: #2563eb;
+  --lp-primary-600: #1d4ed8;
+  --lp-success: #16a34a;
+  --lp-bg: #f8fafc;
+  --lp-surface: #ffffff;
+  --lp-text: #0f172a;
+  --lp-muted: #475569;
+  --lp-border: #e2e8f0;
+  --lp-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+
+  min-height: 100svh;
+  background: radial-gradient(1200px 600px at 50% 0%, rgba(37, 99, 235, 0.14), transparent 55%),
+    var(--lp-bg);
+  color: var(--lp-text);
+  text-align: left;
+}
+
+.landing-container .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in oklab, var(--lp-surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid color-mix(in oklab, var(--lp-border) 70%, transparent);
+}
+
+.landing-container .logo {
+  font-weight: 750;
+  letter-spacing: -0.2px;
+  font-size: 18px;
+}
+
+.landing-container .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.landing-container .nav-links a {
+  color: var(--lp-muted);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.landing-container .nav-links a:hover {
+  background: color-mix(in oklab, var(--lp-primary) 10%, transparent);
+  color: var(--lp-text);
+}
+
+.landing-container .btn-login {
+  background: transparent;
+  color: var(--lp-text);
+  border: 1px solid var(--lp-border);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.landing-container .btn-login:hover {
+  border-color: color-mix(in oklab, var(--lp-primary) 35%, var(--lp-border));
+  background: color-mix(in oklab, var(--lp-primary) 8%, transparent);
+}
+
+.landing-container .landing-hero {
+  text-align: center;
+  padding: 72px 24px 28px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.landing-container .landing-hero h1 {
+  font-size: clamp(30px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+
+.landing-container .landing-hero p {
+  margin: 0 auto 22px;
+  max-width: 70ch;
+  color: var(--lp-muted);
+}
+
+.landing-container .demo-section {
+  padding: 24px 24px 64px;
+}
+
+.landing-container .card {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--lp-surface);
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: var(--lp-shadow);
+  border: 1px solid var(--lp-border);
+}
+
+.landing-container .card h2 {
+  margin: 0 0 18px;
+  letter-spacing: -0.2px;
+}
+
+.landing-container .upload-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0 18px;
+}
+
+.landing-container .upload-box {
+  border: 1px dashed color-mix(in oklab, var(--lp-border) 90%, #94a3b8);
+  background: color-mix(in oklab, var(--lp-bg) 55%, white);
+  padding: 16px 16px 14px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.landing-container .upload-box p {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--lp-text);
+}
+
+.landing-container input[type='file'] {
+  width: 100%;
+  color: var(--lp-muted);
+}
+
+.landing-container input[type='file']::-webkit-file-upload-button {
+  margin-right: 12px;
+  border: 1px solid var(--lp-border);
+  background: var(--lp-surface);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.landing-container input[type='file']::-webkit-file-upload-button:hover {
+  border-color: color-mix(in oklab, var(--lp-primary) 35%, var(--lp-border));
+  background: color-mix(in oklab, var(--lp-primary) 8%, transparent);
+}
+
+.landing-container .btn-primary {
+  background: var(--lp-primary);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.landing-container .btn-primary:hover {
+  background: var(--lp-primary-600);
+}
+
+.landing-container .btn-process {
+  width: 100%;
+  background: var(--lp-success);
+  color: white;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.landing-container .btn-process:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.landing-container .result-card {
+  margin-top: 20px;
+  padding: 20px;
+  background: color-mix(in oklab, var(--lp-success) 10%, white);
+  border: 1px solid color-mix(in oklab, var(--lp-success) 22%, var(--lp-border));
+  border-radius: 14px;
+  text-align: center;
+}
+
+.landing-container .status-pass {
+  color: var(--lp-success);
+  font-weight: 850;
+}
+
+.landing-container .status-fail {
+  color: #dc2626;
+  font-weight: 850;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  .landing-container .upload-container {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-container .navbar {
+    padding: 14px 16px;
+  }
+
+  .landing-container .landing-hero {
+    padding: 46px 16px 18px;
+  }
+
+  .landing-container .demo-section {
+    padding: 16px 16px 40px;
+  }
+
+  .landing-container .card {
+    padding: 18px;
+  }
+}
