@@ -1,22 +1,40 @@
-/* LandingPage-only styles (scoped) */
+/* ═══════════════════════════════════════════════════════════
+   LandingPage.css — AutoGrade
+   Merged: existing styles + new elements (error, stats, preview, table)
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
 .landing-container {
-  --lp-primary: #2563eb;
+  --lp-primary:     #2563eb;
   --lp-primary-600: #1d4ed8;
-  --lp-success: #16a34a;
-  --lp-bg: #f8fafc;
-  --lp-surface: #ffffff;
-  --lp-text: #0f172a;
-  --lp-muted: #475569;
-  --lp-border: #e2e8f0;
-  --lp-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --lp-primary-100: rgba(37, 99, 235, 0.10);
+  --lp-success:     #16a34a;
+  --lp-success-bg:  rgba(22, 163, 74, 0.08);
+  --lp-danger:      #dc2626;
+  --lp-danger-bg:   rgba(220, 38, 38, 0.07);
+  --lp-warning:     #d97706;
+  --lp-bg:          #f8fafc;
+  --lp-surface:     #ffffff;
+  --lp-text:        #0f172a;
+  --lp-muted:       #475569;
+  --lp-border:      #e2e8f0;
+  --lp-shadow:      0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --lp-font:        'Sora', sans-serif;
+  --lp-mono:        'IBM Plex Mono', monospace;
 
   min-height: 100svh;
-  background: radial-gradient(1200px 600px at 50% 0%, rgba(37, 99, 235, 0.14), transparent 55%),
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(37, 99, 235, 0.14), transparent 55%),
     var(--lp-bg);
   color: var(--lp-text);
   text-align: left;
+  font-family: var(--lp-font);
 }
 
+/* ───────────────────────────────────────
+   NAVBAR
+─────────────────────────────────────── */
 .landing-container .navbar {
   display: flex;
   align-items: center;
@@ -32,9 +50,10 @@
 }
 
 .landing-container .logo {
-  font-weight: 750;
-  letter-spacing: -0.2px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   font-size: 18px;
+  font-family: var(--lp-font);
 }
 
 .landing-container .nav-links {
@@ -49,10 +68,11 @@
   font-weight: 600;
   padding: 8px 10px;
   border-radius: 10px;
+  transition: background 0.15s, color 0.15s;
 }
 
 .landing-container .nav-links a:hover {
-  background: color-mix(in oklab, var(--lp-primary) 10%, transparent);
+  background: var(--lp-primary-100);
   color: var(--lp-text);
 }
 
@@ -64,13 +84,18 @@
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
+  font-family: var(--lp-font);
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .landing-container .btn-login:hover {
   border-color: color-mix(in oklab, var(--lp-primary) 35%, var(--lp-border));
-  background: color-mix(in oklab, var(--lp-primary) 8%, transparent);
+  background: var(--lp-primary-100);
 }
 
+/* ───────────────────────────────────────
+   HERO
+─────────────────────────────────────── */
 .landing-container .landing-hero {
   text-align: center;
   padding: 72px 24px 28px;
@@ -84,14 +109,37 @@
   letter-spacing: -1px;
   margin: 0 0 14px;
   color: #0f172a;
+  font-weight: 800;
 }
 
 .landing-container .landing-hero p {
   margin: 0 auto 22px;
   max-width: 70ch;
   color: var(--lp-muted);
+  line-height: 1.6;
 }
 
+.landing-container .btn-primary {
+  background: var(--lp-primary);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+  font-family: var(--lp-font);
+  font-size: 0.95rem;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.landing-container .btn-primary:hover {
+  background: var(--lp-primary-600);
+  transform: translateY(-1px);
+}
+
+/* ───────────────────────────────────────
+   DEMO SECTION & CARD
+─────────────────────────────────────── */
 .landing-container .demo-section {
   padding: 24px 24px 64px;
 }
@@ -110,13 +158,17 @@
   margin: 0 0 18px;
   letter-spacing: -0.2px;
   color: #0f172a;
+  font-weight: 700;
 }
 
+/* ───────────────────────────────────────
+   UPLOAD
+─────────────────────────────────────── */
 .landing-container .upload-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  margin: 18px 0 18px;
+  margin: 18px 0;
 }
 
 .landing-container .upload-box {
@@ -126,6 +178,11 @@
   border-radius: 14px;
   text-align: left;
   color: #0f172a;
+  transition: border-color 0.15s;
+}
+
+.landing-container .upload-box:has(input:focus) {
+  border-color: var(--lp-primary);
 }
 
 .landing-container .upload-box p {
@@ -134,42 +191,44 @@
   color: #0f172a;
 }
 
+/* File name badge */
+.landing-container .file-name {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--lp-muted);
+  font-family: var(--lp-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .landing-container input[type='file'] {
   width: 100%;
   color: #0f172a;
+  font-family: var(--lp-font);
 }
 
 .landing-container input[type='file']::-webkit-file-upload-button {
   margin-right: 12px;
   border: 1px solid var(--lp-border);
-  /* background: var(--lp-surface); */
   padding: 10px 12px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 650;
-  background: #e2e8f0; /* abu */
+  background: #e2e8f0;
   color: #0f172a;
+  font-family: var(--lp-font);
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .landing-container input[type='file']::-webkit-file-upload-button:hover {
   border-color: color-mix(in oklab, var(--lp-primary) 35%, var(--lp-border));
-  background: color-mix(in oklab, var(--lp-primary) 8%, transparent);
+  background: var(--lp-primary-100);
 }
 
-.landing-container .btn-primary {
-  background: var(--lp-primary);
-  color: white;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 800;
-}
-
-.landing-container .btn-primary:hover {
-  background: var(--lp-primary-600);
-}
-
+/* ───────────────────────────────────────
+   PROCESS BUTTON
+─────────────────────────────────────── */
 .landing-container .btn-process {
   width: 100%;
   background: var(--lp-success);
@@ -177,35 +236,227 @@
   padding: 14px 16px;
   border: none;
   border-radius: 14px;
-  font-weight: 850;
+  font-weight: 800;
+  font-size: 0.95rem;
+  font-family: var(--lp-font);
   cursor: pointer;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+}
+
+.landing-container .btn-process:hover:not(:disabled) {
+  background: #15803d;
+  transform: translateY(-1px);
 }
 
 .landing-container .btn-process:disabled {
   background: #94a3b8;
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
+/* ───────────────────────────────────────
+   ERROR CARD
+─────────────────────────────────────── */
+.landing-container .error-card {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--lp-danger-bg);
+  border: 1px solid color-mix(in oklab, var(--lp-danger) 25%, var(--lp-border));
+  border-radius: 12px;
+  color: var(--lp-danger);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ───────────────────────────────────────
+   RESULT CARD
+─────────────────────────────────────── */
 .landing-container .result-card {
   margin-top: 20px;
-  padding: 20px;
-  background: color-mix(in oklab, var(--lp-success) 10%, white);
+  padding: 22px;
+  background: var(--lp-success-bg);
   border: 1px solid color-mix(in oklab, var(--lp-success) 22%, var(--lp-border));
-  border-radius: 14px;
-  text-align: center;
+  border-radius: 16px;
+}
+
+/* Result header — skor & status */
+.landing-container .result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid color-mix(in oklab, var(--lp-success) 20%, var(--lp-border));
+}
+
+.landing-container .result-header p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--lp-text);
+}
+
+.landing-container .result-header strong {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--lp-mono);
+  color: var(--lp-text);
 }
 
 .landing-container .status-pass {
   color: var(--lp-success);
-  font-weight: 850;
+  font-weight: 800;
+  font-size: 1rem;
 }
 
 .landing-container .status-fail {
-  color: #dc2626;
-  font-weight: 850;
+  color: var(--lp-danger);
+  font-weight: 800;
+  font-size: 1rem;
 }
 
-/* Responsive Mobile */
+/* ───────────────────────────────────────
+   STATS ROW (Benar / Salah / Kosong)
+─────────────────────────────────────── */
+.landing-container .result-stats {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.landing-container .stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  background: var(--lp-surface);
+  border-radius: 12px;
+  border: 1px solid var(--lp-border);
+}
+
+.landing-container .stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--lp-mono);
+  line-height: 1;
+}
+
+.landing-container .stat-value.correct { color: var(--lp-success); }
+.landing-container .stat-value.wrong   { color: var(--lp-danger); }
+.landing-container .stat-value.empty   { color: #94a3b8; }
+
+.landing-container .stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lp-muted);
+}
+
+/* ───────────────────────────────────────
+   PREVIEW IMAGE
+─────────────────────────────────────── */
+.landing-container .preview-container {
+  margin-bottom: 20px;
+}
+
+.landing-container .preview-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--lp-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.landing-container .preview-image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--lp-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+}
+
+/* ───────────────────────────────────────
+   DETAIL TABLE (collapsible)
+─────────────────────────────────────── */
+.landing-container .detail-toggle {
+  margin-top: 4px;
+}
+
+.landing-container .detail-toggle summary {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--lp-primary);
+  padding: 10px 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-container .detail-toggle summary::before {
+  content: '▶';
+  font-size: 0.65rem;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.landing-container .detail-toggle[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.landing-container .detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 0.83rem;
+  font-family: var(--lp-mono);
+}
+
+.landing-container .detail-table th {
+  background: #f1f5f9;
+  padding: 9px 10px;
+  text-align: center;
+  border-bottom: 2px solid var(--lp-border);
+  font-family: var(--lp-font);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--lp-muted);
+}
+
+.landing-container .detail-table td {
+  padding: 7px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--lp-border);
+}
+
+.landing-container .detail-table tr:last-child td {
+  border-bottom: none;
+}
+
+.landing-container .row-correct td { background: rgba(22, 163, 74, 0.05); }
+.landing-container .row-wrong   td { background: rgba(220, 38, 38, 0.05); }
+
+.landing-container .detail-table tr:hover td {
+  filter: brightness(0.97);
+}
+
+/* ───────────────────────────────────────
+   RESPONSIVE MOBILE
+─────────────────────────────────────── */
 @media (max-width: 600px) {
   .landing-container .upload-container {
     grid-template-columns: 1fr;
@@ -225,5 +476,18 @@
 
   .landing-container .card {
     padding: 18px;
+  }
+
+  .landing-container .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .landing-container .result-stats {
+    gap: 8px;
+  }
+
+  .landing-container .stat-value {
+    font-size: 1.4rem;
   }
 }
