@@ -3,6 +3,7 @@ import './LandingPage.css';
 import { useState, type ChangeEvent } from 'react';
 
 interface GradingResult {
+  success: boolean;
   score: number;
   status: 'Lulus' | 'Tidak Lulus' | 'Error';
   correct_count: number;
